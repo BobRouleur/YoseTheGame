@@ -120,6 +120,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BigNumberResponse.cs" />
     <Compile Include="Models\ErrorResponse.cs">
       <SubType>Code</SubType>
     </Compile>

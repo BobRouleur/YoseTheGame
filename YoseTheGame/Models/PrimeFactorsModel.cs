@@ -13,18 +13,27 @@ namespace YoseTheGame.Models
             if (number.IsInt())
             {
                 int temp = int.Parse(number);
-                List<int> decomposition = new List<int>();
-                while (temp != 1)
+
+                if (temp > 1000000)
                 {
-                    temp /= 2;
-                    decomposition.Add(2);
+                    BigNumberResponse response = new BigNumberResponse();
+                    response.number = temp;
+                    response.error = "too big number (>1e6)";
+
+                    return response;
+
                 }
+                else
+                {
+                    NumberResponse response = new NumberResponse();
+                    response.number = int.Parse(number);
+                    response.decomposition = GetPrimeFactors(int.Parse(number));
 
-                NumberResponse response = new NumberResponse();
-                response.number = int.Parse(number);
-                response.decomposition = decomposition;
-
-                return response;
+                    return response;
+                }
+                
+               
+                
             }
             else
             {
@@ -34,6 +43,60 @@ namespace YoseTheGame.Models
 
                 return response;
             }
+
+            
+        }
+
+        static bool IsPrimeNumber(int num)
+        {
+            bool bPrime = true;
+            int factor = num / 2;
+
+            int i = 0;
+
+            for (i = 2; i <= factor; i++)
+            {
+                if ((num % i) == 0)
+                    bPrime = false;
+            }
+            return bPrime;
+        }
+
+        static public List<int> GetPrimeFactors(int num)
+        {
+
+            var factors = new List<int>();
+
+            
+            while (num % 2 == 0)
+            {
+                
+                    factors.Add(2);
+                    
+                
+                num = num / 2;
+            }
+
+            int divisor = 3;
+            
+            while (divisor <= num)
+            {
+                if (num % divisor == 0)
+                {
+                   
+                        factors.Add(divisor);
+                        
+                    num = num / divisor;
+                }
+                else
+                {
+                    
+                    divisor += 2;
+                }
+
+            }
+
+            return factors;
         }
     } 
 

@@ -70,6 +70,8 @@
     <Compile Include="PrimeFactorsModelStringTest.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PrimeFactorsDecompositionTest.cs" />
+    <Compile Include="PrimeFactorsBigNumberTest.cs" />
     <Compile Include="PrimeFactorsModelTest.cs">
       <SubType>Code</SubType>
     </Compile>
